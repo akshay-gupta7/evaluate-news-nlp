@@ -1,0 +1,28 @@
+let baseurl = 'https://api.meaningcloud.com/sentiment-2.1'
+const apiKey = 'e3d89a305b3ccd4c59c819cce83951b7';
+const article = 'https://globalnews.ca/news/8752429/ukraine-russia-chemical-weapon-attack-mariupol'
+
+const getTemperature = async (baseurl, apiKey, zipcode, feelings)=>{
+    const finalurl = baseurl + zipcode + ",us&appid=" + apiKey;
+    console.log('Date is ', newDate);
+    const res = await fetch(baseurl, requestOptions)
+    try{
+        const data = await res.json();
+        console.log("The following is the response of data: ", data);
+        const temp_in_far = data.main.temp;
+        console.log("Temperature in Degrees farhenheit is:", temp_in_far);
+        console.log("Feelings is", feelings);
+        /*obj = new Object();
+        obj.temperature = temp_in_far;
+        obj.feeling = feelings;
+        obj.date = newDate;
+        const str = JSON.stringify(temp_in_far);
+        console.log("Object is ", str);*/
+        postData('/temperature', {temperate : String(temp_in_far), feeling: feelings, date : newDate});
+        updateUI();
+        return data;
+    }   
+    catch(error) {
+        console.log("error", error);
+    }
+}
