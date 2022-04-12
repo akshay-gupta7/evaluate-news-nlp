@@ -1,5 +1,5 @@
-//import { checkForName } from './js/nameChecker'
-//import { handleSubmit } from './js/formHandler'
+import { checkURL } from './js/stringcheck'
+import { checkForURLvalidity } from './js/URLChecker'
 
 //console.log(checkForName);
 document.getElementById('generate').addEventListener('click', handleSubmit);
@@ -8,6 +8,15 @@ document.getElementById('generate').addEventListener('click', handleSubmit);
 
 function handleSubmit(event) {
     event.preventDefault();
+    const article = document.getElementById('artlink').value;
+    if(checkURL(article)==1){
+        alert("Please enter an URL before clicking generate button");
+        return;
+    }
+    if(checkForURLvalidity(article)==false){
+        alert("Please enter a valid URL");
+        return;
+    }
     
     //console.log("URL entered is", linktoarticle);
     const apiurl = '/api';
@@ -77,5 +86,5 @@ function handleSubmit(event) {
     
 
 
-alert("I EXIST")
-console.log("CHANGE!!");
+/*alert("I EXIST")
+console.log("CHANGE!!");*/
