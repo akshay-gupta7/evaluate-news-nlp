@@ -1,6 +1,8 @@
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express()
 
@@ -18,6 +20,7 @@ const port = 8105;
 
 app.listen(port, function () {
     console.log('Example app listening on port ', port)
+    console.log(`Your API Key is ${process.env.API_KEY}`)
 })
 
 app.get('/test', function (req, res) {
