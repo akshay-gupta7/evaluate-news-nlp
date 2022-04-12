@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-const port = 7101;
+const port = 7107;
 
 let apikey={};
 apikey['key'] = process.env.API_KEY;

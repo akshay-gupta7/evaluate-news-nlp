@@ -4,12 +4,13 @@ import { checkForName } from './js/nameChecker'
 //console.log(checkForName);
 document.getElementById('generate').addEventListener('click', handleSubmit);
 
+
+
 function handleSubmit(event) {
     event.preventDefault()
-    const baseurl = 'https://api.meaningcloud.com/sentiment-2.1'
-    // check what text was put into the form field
-    const linktoarticle = document.getElementById('artlink').value
-    //checkForName(formText)
+    const baseurl = 'https://api.meaningcloud.com/sentiment-2.1';
+    const linktoarticle = document.getElementById('artlink').value;
+    console.log("URL entered is", linktoarticle);
     const apiurl = '/api';
     const getapikey = async(url='',data={})=>{
         //const res = await fetch(apiurl)
@@ -18,8 +19,20 @@ function handleSubmit(event) {
         try{
             const data = await res.json();
             console.log(data);
-            return data;
+            
+            let formdata = {};
+            formdata["key"] = data.key;
+            formdata["url"] = linktoarticle;
+            formdata["lang"] = "en";
 
+            const requestOptions = {
+            method : 'POST',
+            body: formdata,
+            redirect: 'follow'
+            };
+
+            console.log("Formdata is",formdata);
+            return data;
         }
         catch(error){
             console.log("error",error)
@@ -32,18 +45,7 @@ function handleSubmit(event) {
     .then(function(res) {
         document.getElementById('results').innerHTML = res.message
     })*/
-    const formdata = new FormData();
-    formdata.append("key", key);
-    formdata.append("url", linktoarticle);
-    formdata.append("lang", "en");
-
-    const requestOptions = {
-    method : 'POST',
-    body: formdata,
-    redirect: 'follow'
-    };
-
-    console.log("Formdata is",formdata);
+    
 }
 
 alert("I EXIST")
