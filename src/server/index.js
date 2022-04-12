@@ -16,13 +16,18 @@ app.get('/', function (req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-const port = 8105;
+const port = 8110;
+
+let apikey={};
+apikey['key'] = process.env.API_KEY;
 
 app.listen(port, function () {
     console.log('Example app listening on port ', port)
-    console.log(`Your API Key is ${process.env.API_KEY}`)
+    //console.log('Your API key is', apikey)
 })
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
+
+
+app.get('/api', function (req, res) {
+    res.send(apikey)
 })
