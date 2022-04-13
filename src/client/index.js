@@ -2,7 +2,7 @@ import { checkURL } from './js/stringcheck'
 import { checkForURLvalidity } from './js/URLChecker'
 
 //console.log(checkForName);
-document.getElementById('generate').addEventListener('click', handleSubmit);
+//document.getElementById('generate').addEventListener('click', handleSubmit);
 
 
 
@@ -11,11 +11,11 @@ function handleSubmit(event) {
     const article = document.getElementById('artlink').value;
     if(checkURL(article)==1){
         alert("Please enter an URL before clicking generate button");
-        return;
+        return false;
     }
     if(checkForURLvalidity(article)==false){
         alert("Please enter a valid URL");
-        return;
+        return false;
     }
     
     //console.log("URL entered is", linktoarticle);
@@ -77,7 +77,10 @@ function handleSubmit(event) {
         return sentiment;
             
         });
+        return true;
 }
+
+export { handleSubmit }
     /*fetch('http://localhost:8080/test')
     .then(res => res.json())
     .then(function(res) {
